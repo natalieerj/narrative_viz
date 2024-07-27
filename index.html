@@ -4,6 +4,56 @@
     <script src="https://d3js.org/d3.v4.js"></script>
   </head>
 
+  <body>
+    <h1>Drug and Alcohol Usage by Age</h1>
+       <div id="controls">
+          <span class="type">
+            Type of drug:
+            <select class="type" name="type"></select>
+          </span>
+    </div>
+    
+    <svg width=300 height=300>
+    </svg>
+    <script>
+        labels = ['alcohol', 'marijuana', 'cocaine', 'crack', 'heroin', 'hallucinogen', 'inhalant', 'painreleiver', 'oxycontin', 'tranquilizer', 'stimulant', 'meth', 'sedative']
+     d3.select('select.type')
+        .on('change', () => update(data))
+        .selectAll('option')
+        .data(labels)
+        .enter()
+        .append('option')
+        .attr('value', d => d)
+        .text(d => d)
+      d3.select('select.type').property('value', 'alcohol')
+      async function init() {
+        const usage = await d3.csv('/drug-age-usage.csv');
+
+      }
+      //   circ = Array(100)
+      // xx = 4
+
+// colors = []
+
+// for (let i = 0; i < 4; i++) {
+//     colors = colors.concat("red");
+// }
+  
+      //   colors = ['red', 'red', 'red', 'red']
+        
+      //   d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("circle").data(circ).enter().append("circle")
+      //   .attr("cx", function(d,i) {
+      //       x = (15 * Math.floor(i/10));      
+      //       return x})
+      //   .attr("cy", function(d,i) {
+      //       y = 15 * (i%10)
+      //       return y})
+      //   .attr("r", 5)
+      //   .style("fill", function(d,i) {return colors[i]})
+      // }
+    </script>
+  </body>
+
 <!--   dat = Array(10)
 var x = 100 + (50* Math.floor(i/10));           
 var y = 50 * (i%10) + 20 ;
