@@ -88,6 +88,19 @@ d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("ci
 
 d3.select("body").select("#slide").html("Age " + ages[c])
 
+const annotations = [
+  {
+    note: {
+      label: "Here is the annotation label",
+      title: "Annotation title"
+    },
+    color: ["red"],
+    x: 250,
+    y: 250,
+    dy: 30,
+    dx: 30
+  }
+]
 
 function updateChart(newdata) {
     vars = d3.select('select.type').property('value')
@@ -196,7 +209,14 @@ function nav(newdata, direction) {
     d3.select("svg").select("g").selectAll("circle").transition()
       .duration(500).delay(0).style("fill",  function(d,i) {return colors[i]})
     
-    d3.select("body").select("#slide").html("Age " + ages[c])     
+    d3.select("body").select("#slide").html("Age " + ages[c])
+    if (c == 10) {
+      const makeAnnotations = d3.annotation()
+        .annotations(annotations)
+      d3.select("svg")
+        .append("g")
+        .call(makeAnnotations)
+    }
 }
 
 function column(d, ints){
