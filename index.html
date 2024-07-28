@@ -1,4 +1,4 @@
-<html>
+ <html>
   <head>
     <title>Drug Usage by Age</title>
     <meta charset="utf-8">
@@ -15,6 +15,7 @@
           </span>
     </div>
     <h4 id='slide'></h4>
+    <p>Each dot represents one person in a 100 person group. Use the controls to explore the number of people in each age group that would experiment with drugs and alcohol throughout their lives.</p>
     <button id='previous'>Previous</button>
     <button id='next'>Next</button>
 
@@ -88,11 +89,11 @@ d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("ci
 
 d3.select("body").select("#slide").html("Age " + ages[c])
 
-const annotations = [
+const annotations22 = [
   {
     note: {
-      label: "Here is the annotation label",
-      title: "Annotation title"
+      label: "Typically, drug and alcohol consumption peaks at 22-23 years old",
+      title: "Peak Usage"
     },
     color: ["red"],
     x: 250,
@@ -101,6 +102,30 @@ const annotations = [
     dx: 30
   }
 ]
+
+const annotations12 = [
+  {
+    note: {
+      label: "Across all drugs types, somewhere between 0-4% of 12 year olds are trying 1+ substance",
+      title: "Some start young"
+    },
+    color: ["red"],
+    x: 250,
+    y: 250,
+    dy: 30,
+    dx: 30
+  }
+]
+
+  const makeAnnotations12 = d3.annotation()
+        .annotations(annotations12)
+      d3.select("svg")
+        .append("g")
+        .attr("id", "anno")
+        .call(makeAnnotations12)
+        .transition()
+        .duration('50')
+        .attr('opacity', '1');
 
 function updateChart(newdata) {
     vars = d3.select('select.type').property('value')
@@ -211,12 +236,18 @@ function nav(newdata, direction) {
     
     d3.select("body").select("#slide").html("Age " + ages[c])
     if (c == 10) {
-      const makeAnnotations = d3.annotation()
-        .annotations(annotations)
+      const makeAnnotations22 = d3.annotation()
+        .annotations(annotations22)
       d3.select("svg")
-        .append("g")
-        .attr("id", "anno")
-        .call(makeAnnotations)
+        .select("#anno")
+        .call(makeAnnotations22)
+        .transition()
+        .duration('50')
+        .attr('opacity', '1');
+    } else if {
+      d3.select("svg")
+        .select("#anno")
+        .call(makeAnnotations12)
         .transition()
         .duration('50')
         .attr('opacity', '1');
@@ -376,13 +407,11 @@ d3.select("svg").data(freqtemp).on('mouseover', function (d, i) {
 // A median user in this age group used " + column(d, c)).toString() + ' times in the past 12 months'
 // Add annotation to the chart
 // const 
-if (c == 10) {
-const makeAnnotations = d3.annotation()
-  .annotations(annotations)
-d3.select("svg")
-  .append("g")
-  .call(makeAnnotations)
-}
+// const makeAnnotations = d3.annotation()
+//   .annotations(annotations)
+// d3.select("svg")
+//   .append("g")
+//   .call(makeAnnotations)
           
     });
     });
