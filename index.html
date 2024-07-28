@@ -197,6 +197,45 @@ function nav(newdata, direction) {
     d3.select("body").select("#slide").html("Age " + ages[c])     
 }
 
+function column(d, ints){
+    if (c ==0){
+            return d.age12;
+        } else if (c ==1){
+            return d.age13;
+        } else if (c ==2){
+            return d.age14;
+        } else if (c ==3){
+            return d.age15;
+        } else if (c ==4){
+            return d.age16;
+        } else if (c ==5){
+            return d.age17;
+        } else if (c ==6){
+            return d.age18;
+        } else if (c ==7){
+            return d.age19;
+        } else if (c ==8){
+            return d.age20;
+        } else if (c ==9){
+            return d.age21;
+        } else if (c ==10){
+            return d.age2223;
+        } else if (c ==11){
+            return d.age2425;
+        } else if (c ==12){
+            return d.age2629;
+        } else if (c ==13){
+            return d.age3034;
+        } else if (c ==14){
+            return d.age3549;
+        } else if (c ==15){
+            return d.age5064;
+        } else if (c ==16){
+            return d.age65;
+        }
+        return d.age12;
+}
+
 d3.select("#previous").on("click", (event) => nav(data, 'previous'))
 d3.select("#next").on("click", (event) => nav(data, 'next'))
 
