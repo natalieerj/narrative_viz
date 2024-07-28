@@ -16,7 +16,8 @@
     <svg width=300 height=300>
     </svg>
     <script>
-        labels = ['alcohol', 'marijuana', 'cocaine', 'crack', 'heroin', 'hallucinogen', 'inhalant', 'painreleiver', 'oxycontin', 'tranquilizer', 'stimulant', 'meth', 'sedative']
+        c = 0
+        ages = ['12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22-23', '24-25', '26-29', '30-34', '35-49', '50-64', '65+']
      d3.select('select.type')
         .on('change', () => update(data))
         .selectAll('option')
@@ -33,97 +34,226 @@
         let vars = d3.select('select.type').property('value')
 
       data = d3.csv("drug-age-usage.csv", function(data) {
-      //   return {
-      //     Variables: d.Variables,
-      //     age12: d.age12,
-      //     age13: d.age13,
-      //     age14: d.age14,
-      //     age15: d.age15,
-      //     age16: d.age16,
-      //     age17: d.age17,
-      //     age18: d.age18,
-      //     age19: d.age19,
-      //     age20: d.age20,
-      //     age21: d.age21,
-      //     age2223: d.age2223,
-      //     age2425: d.age2425,
-      //     age3034: d.age3034,
-      //     age3549: d.age3549,
-      //     age5064: d.age5064,
-      //     age65: d.age65
-      // } 
-
         console.log(data);
 
 
      //   data = d3.csv('drug-age-usage.csv')
         labels = ['alcohol', 'marijuana', 'cocaine', 'crack', 'heroin', 'hallucinogen', 'inhalant', 'painreleiver', 'oxycontin', 'tranquilizer', 'stimulant', 'meth', 'sedative']
         d3.select('select.type')
-              .on('change', () => updateChart(data))
-              .selectAll('option')
-              .data(labels)
-              .enter()
-              .append('option')
-              .attr('value', d => d)
-              .text(d => d)
-        d3.select('select.type').property('value', 'alcohol')
+        .on('change', () => updateChart(data))
+        .selectAll('option')
+        .data(labels)
+        .enter()
+        .append('option')
+        .attr('value', d => d)
+        .text(d => d)
+      d3.select('select.type').property('value', 'alcohol')
       
-        vars = d3.select('select.type').property('value')
+    vars = d3.select('select.type').property('value')
     
-        temp = data.filter(function(d){ return d.Variable == vars})
+    temp = data.filter(function(d){ return d.Variable == vars})
     
-        circ = Array(100)
+    circ = Array(100)
 
-        x = d3.max(temp, function(d) { return d.age12; })
-
-        colors = []
-
-        for (let i = 0; i < x; i++) {
-            colors = colors.concat("red");
-        }  
-
-
-        d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("circle").data(circ).enter().append("circle")
-          .attr("cx", function(d,i) {
-              x = (15 * Math.floor(i/10));      
-              return x})
-          .attr("cy", function(d,i) {
-                y = 15 * (i%10)
-                return y})
-          .attr("r", 5)
-          .style("fill", function(d,i) {return colors[i]})
-
-        function updateChart(newdata) {
-          vars = d3.select('select.type').property('value')
-          temp = newdata.filter(function(d){ return d.Variable == vars})
-          colors = []
-          x = d3.max(temp, function(d) { return d.age12; })
-          for (let i = 0; i < x; i++) {
-              colors = colors.concat("red");
-          }
-          d3.select("svg").select("g").selectAll("circle").style("fill",  function(d,i) {return colors[i]})
-        }
-      //   circ = Array(100)
-      // xx = 4
-
-// colors = []
-
-// for (let i = 0; i < 4; i++) {
-//     colors = colors.concat("red");
-// }
-  
-      //   colors = ['red', 'red', 'red', 'red']
         
-      //   d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("circle").data(circ).enter().append("circle")
-      //   .attr("cx", function(d,i) {
-      //       x = (15 * Math.floor(i/10));      
-      //       return x})
-      //   .attr("cy", function(d,i) {
-      //       y = 15 * (i%10)
-      //       return y})
-      //   .attr("r", 5)
-      //   .style("fill", function(d,i) {return colors[i]})
-      // }
+
+x = d3.max(temp, function(d) { return d.age12; })
+
+colors = []
+
+for (let i = 0; i < x; i++) {
+    colors = colors.concat("red");
+}
+
+
+d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("circle").data(circ).enter().append("circle")
+.attr("cx", function(d,i) {
+    x = (15 * Math.floor(i/10));      
+    return x})
+.attr("cy", function(d,i) {
+    y = 15 * (i%10)
+    return y})
+.attr("r", 5)
+.style("fill", function(d,i) {return colors[i]})
+
+
+d3.select("body").select("#slide").html("Age " + ages[c])
+
+
+function updateChart(newdata) {
+    vars = d3.select('select.type').property('value')
+    temp = data.filter(function(d){ return d.Variable == vars})
+    colors = []
+    x = d3.max(temp, function(d) {if (c ==0){
+            return d.age12;
+        } else if (c ==1){
+            return d.age13;
+        } else if (c ==2){
+            return d.age14;
+        } else if (c ==3){
+            return d.age15;
+        } else if (c ==4){
+            return d.age16;
+        } else if (c ==5){
+            return d.age17;
+        } else if (c ==6){
+            return d.age18;
+        } else if (c ==7){
+            return d.age19;
+        } else if (c ==8){
+            return d.age20;
+        } else if (c ==9){
+            return d.age21;
+        } else if (c ==10){
+            return d.age2223;
+        } else if (c ==11){
+            return d.age2425;
+        } else if (c ==12){
+            return d.age2629;
+        } else if (c ==13){
+            return d.age3034;
+        } else if (c ==14){
+            return d.age3549;
+        } else if (c ==15){
+            return d.age5064;
+        } else if (c ==16){
+            return d.age65;
+        }
+        return d.age12; 
+            
+    })
+    for (let i = 0; i < x; i++) {
+        colors = colors.concat("red");
+    }
+    d3.select("body").select("#slide").html("Age " + ages[c])
+    d3.select("svg").select("g").selectAll("circle").transition()
+      .duration(500).delay(0).style("fill",  function(d,i) {return colors[i]})
+}
+
+function next(newdata, direction) {
+    // vars = d3.select('select.type').property('value')
+    // temp = data.filter(function(d){ return d.Variable == vars})
+    if (direction == 'next' && c != 16) {
+        c = c + 1
+    } else if (direction == 'previous' && c != 0) {
+        c = c - 1
+    }
+    colors = []
+    x = d3.max(temp, function(d) { 
+        if (c ==0){
+            return d.age12;
+        } else if (c ==1){
+            return d.age13;
+        } else if (c ==2){
+            return d.age14;
+        } else if (c ==3){
+            return d.age15;
+        } else if (c ==4){
+            return d.age16;
+        } else if (c ==5){
+            return d.age17;
+        } else if (c ==6){
+            return d.age18;
+        } else if (c ==7){
+            return d.age19;
+        } else if (c ==8){
+            return d.age20;
+        } else if (c ==9){
+            return d.age21;
+        } else if (c ==10){
+            return d.age2223;
+        } else if (c ==11){
+            return d.age2425;
+        } else if (c ==12){
+            return d.age2629;
+        } else if (c ==13){
+            return d.age3034;
+        } else if (c ==14){
+            return d.age3549;
+        } else if (c ==15){
+            return d.age5064;
+        } else if (c ==16){
+            return d.age65;
+        }
+        return d.age12; 
+            
+    })
+    for (let i = 0; i < x; i++) {
+        colors = colors.concat("red");
+    }
+    d3.select("svg").select("g").selectAll("circle").transition()
+      .duration(500).delay(0).style("fill",  function(d,i) {return colors[i]})
+    
+    d3.select("body").select("#slide").html("Age " + ages[c])
+    
+   
+}
+//         d3.select('select.type')
+//               .on('change', () => updateChart(data))
+//               .selectAll('option')
+//               .data(labels)
+//               .enter()
+//               .append('option')
+//               .attr('value', d => d)
+//               .text(d => d)
+//         d3.select('select.type').property('value', 'alcohol')
+      
+//         vars = d3.select('select.type').property('value')
+    
+//         temp = data.filter(function(d){ return d.Variable == vars})
+    
+//         circ = Array(100)
+
+//         x = d3.max(temp, function(d) { return d.age12; })
+
+//         colors = []
+
+//         for (let i = 0; i < x; i++) {
+//             colors = colors.concat("red");
+//         }  
+
+
+//         d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("circle").data(circ).enter().append("circle")
+//           .attr("cx", function(d,i) {
+//               x = (15 * Math.floor(i/10));      
+//               return x})
+//           .attr("cy", function(d,i) {
+//                 y = 15 * (i%10)
+//                 return y})
+//           .attr("r", 5)
+//           .style("fill", function(d,i) {return colors[i]})
+
+//         function updateChart(newdata) {
+//           vars = d3.select('select.type').property('value')
+//           temp = newdata.filter(function(d){ return d.Variable == vars})
+//           colors = []
+//           x = d3.max(temp, function(d) { return d.age12; })
+//           for (let i = 0; i < x; i++) {
+//               colors = colors.concat("red");
+//           }
+//           d3.select("svg").select("g").selectAll("circle").style("fill",  function(d,i) {return colors[i]})
+//         }
+//       //   circ = Array(100)
+//       // xx = 4
+
+// // colors = []
+
+// // for (let i = 0; i < 4; i++) {
+// //     colors = colors.concat("red");
+// // }
+  
+//       //   colors = ['red', 'red', 'red', 'red']
+        
+//       //   d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("circle").data(circ).enter().append("circle")
+//       //   .attr("cx", function(d,i) {
+//       //       x = (15 * Math.floor(i/10));      
+//       //       return x})
+//       //   .attr("cy", function(d,i) {
+//       //       y = 15 * (i%10)
+//       //       return y})
+//       //   .attr("r", 5)
+//       //   .style("fill", function(d,i) {return colors[i]})
+//       // }
     });
     </script>
   </body>
