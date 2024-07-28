@@ -18,14 +18,14 @@
     <script>
         c = 0
         ages = ['12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22-23', '24-25', '26-29', '30-34', '35-49', '50-64', '65+']
-     d3.select('select.type')
-        .on('change', () => update(data))
-        .selectAll('option')
-        .data(labels)
-        .enter()
-        .append('option')
-        .attr('value', d => d)
-        .text(d => d)
+     // d3.select('select.type')
+     //    .on('change', () => update(data))
+     //    .selectAll('option')
+     //    .data(labels)
+     //    .enter()
+     //    .append('option')
+     //    .attr('value', d => d)
+     //    .text(d => d)
 
       // initialize
         d3.select('select.type').property('value', 'alcohol')
