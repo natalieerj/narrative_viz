@@ -31,32 +31,30 @@
  
        // read current selections
         let vars = d3.select('select.type').property('value')
-        data = d3.csv("drug-age-usage.csv", function(data) {
-          console.log(data[0]);
-          return data;
-        });
 
-      data = d3.csv("drug-age-usage.csv", function(d) {
-        return {
-          Variables: d.Variables,
-          age12: d.age12,
-          age13: d.age13,
-          age14: d.age14,
-          age15: d.age15,
-          age16: d.age16,
-          age17: d.age17,
-          age18: d.age18,
-          age19: d.age19,
-          age20: d.age20,
-          age21: d.age21,
-          age2223: d.age2223,
-          age2425: d.age2425,
-          age3034: d.age3034,
-          age3549: d.age3549,
-          age5064: d.age5064,
-          age65: d.age65
-      } 
-});
+      data = d3.csv("drug-age-usage.csv", function(data) {
+      //   return {
+      //     Variables: d.Variables,
+      //     age12: d.age12,
+      //     age13: d.age13,
+      //     age14: d.age14,
+      //     age15: d.age15,
+      //     age16: d.age16,
+      //     age17: d.age17,
+      //     age18: d.age18,
+      //     age19: d.age19,
+      //     age20: d.age20,
+      //     age21: d.age21,
+      //     age2223: d.age2223,
+      //     age2425: d.age2425,
+      //     age3034: d.age3034,
+      //     age3549: d.age3549,
+      //     age5064: d.age5064,
+      //     age65: d.age65
+      // } 
+
+        consol.log(data);
+
 
      //   data = d3.csv('drug-age-usage.csv')
         labels = ['alcohol', 'marijuana', 'cocaine', 'crack', 'heroin', 'hallucinogen', 'inhalant', 'painreleiver', 'oxycontin', 'tranquilizer', 'stimulant', 'meth', 'sedative']
@@ -126,6 +124,7 @@
       //   .attr("r", 5)
       //   .style("fill", function(d,i) {return colors[i]})
       // }
+    });
     </script>
   </body>
 </html>
