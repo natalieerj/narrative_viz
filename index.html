@@ -25,9 +25,60 @@
         .append('option')
         .attr('value', d => d)
         .text(d => d)
+
+      // initialize
       d3.select('select.type').property('value', 'alcohol')
+ 
+       // read current selections
+      let vars = d3.select('select.type').property('value')
       async function init() {
         const usage = await d3.csv('/drug-age-usage.csv');
+                labels = ['alcohol', 'marijuana', 'cocaine', 'crack', 'heroin', 'hallucinogen', 'inhalant', 'painreleiver', 'oxycontin', 'tranquilizer', 'stimulant', 'meth', 'sedative']
+     d3.select('select.type')
+        .on('change', () => updateChart(data))
+        .selectAll('option')
+        .data(labels)
+        .enter()
+        .append('option')
+        .attr('value', d => d)
+        .text(d => d)
+      d3.select('select.type').property('value', 'alcohol')
+      
+    vars = d3.select('select.type').property('value')
+    
+    temp = data.filter(function(d){ return d.Variable == vars})
+    
+    circ = Array(100)
+
+x = d3.max(temp, function(d) { return d.age12; })
+
+colors = []
+
+for (let i = 0; i < x; i++) {
+    colors = colors.concat("red");
+}
+
+
+d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("circle").data(circ).enter().append("circle")
+.attr("cx", function(d,i) {
+    x = (15 * Math.floor(i/10));      
+    return x})
+.attr("cy", function(d,i) {
+    y = 15 * (i%10)
+    return y})
+.attr("r", 5)
+.style("fill", function(d,i) {return colors[i]})
+
+function updateChart(newdata) {
+    vars = d3.select('select.type').property('value')
+    temp = data.filter(function(d){ return d.Variable == vars})
+    colors = []
+    x = d3.max(temp, function(d) { return d.age12; })
+    for (let i = 0; i < x; i++) {
+        colors = colors.concat("red");
+    }
+    d3.select("svg").select("g").selectAll("circle").style("fill",  function(d,i) {return colors[i]})
+}
 
       }
       //   circ = Array(100)
