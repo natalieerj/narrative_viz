@@ -1,7 +1,9 @@
 <html>
   <head>
     <title>Drug Usage by Age</title>
+    <meta charset="utf-8">
     <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
   </head>
 
   <body>
@@ -331,8 +333,30 @@ d3.select("svg").data(freqtemp).on('mouseover', function (d, i) {
 //       //   .attr("r", 5)
 //       //   .style("fill", function(d,i) {return colors[i]})
 //       // }
+
+      annotations = [
+  {
+    note: {
+      label: "Here is the annotation label",
+      title: "Annotation title"
+    },
+    x: 0,
+    y: 0,
+    dy: 10,
+    dx: 10
+  }
+]
+
+// Add annotation to the chart
+// const 
+makeAnnotations = d3.annotation()
+  .annotations(annotations)
+d3.select("svg")
+  .append("g")
+  .call(makeAnnotations)
     });
     });
+      
     </script>
   </body>
 </html>
