@@ -188,10 +188,7 @@ function nav(newdata, direction) {
     d3.select("svg").select("g").selectAll("circle").transition()
       .duration(500).delay(0).style("fill",  function(d,i) {return colors[i]})
     
-    d3.select("body").select("#slide").html("Age " + ages[c])
-
-  
-     
+    d3.select("body").select("#slide").html("Age " + ages[c])     
 }
 
 d3.select("#previous").on("click", (event) => nav(data, 'previous'))
