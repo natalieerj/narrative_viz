@@ -30,12 +30,6 @@
      //    .attr('value', d => d)
      //    .text(d => d)
 
-      // initialize
-        d3.select('select.type').property('value', 'alcohol')
- 
-       // read current selections
-        let vars = d3.select('select.type').property('value')
-
       data = d3.csv("drug-age-usage.csv", function(data) {
         console.log(data);
 
@@ -50,9 +44,12 @@
         .append('option')
         .attr('value', d => d)
         .text(d => d)
-      d3.select('select.type').property('value', 'alcohol')
-      
-    vars = d3.select('select.type').property('value')
+        
+      // initialize
+        d3.select('select.type').property('value', 'alcohol')
+ 
+       // read current selections
+        let vars = d3.select('select.type').property('value')
     
     temp = data.filter(function(d){ return d.Variable == vars})
         console.log(temp)
