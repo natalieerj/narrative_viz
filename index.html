@@ -55,6 +55,7 @@
     vars = d3.select('select.type').property('value')
     
     temp = data.filter(function(d){ return d.Variable == vars})
+        console.log(temp)
     
     circ = Array(100)
 
@@ -63,10 +64,12 @@
 x = d3.max(temp, function(d) { return d.age12; })
 
 colors = []
+        
 
 for (let i = 0; i < x; i++) {
     colors = colors.concat("red");
 }
+        console.log(colors)
 
 
 d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("circle").data(circ).enter().append("circle")
@@ -131,6 +134,7 @@ function updateChart(newdata) {
     d3.select("body").select("#slide").html("Age " + ages[c])
     d3.select("svg").select("g").selectAll("circle").transition()
       .duration(500).delay(0).style("fill",  function(d,i) {return colors[i]})
+  console.log(colors)
 }
 
 function nav(newdata, direction) {
