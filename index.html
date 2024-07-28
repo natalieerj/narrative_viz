@@ -350,11 +350,13 @@ d3.select("svg").data(freqtemp).on('mouseover', function (d, i) {
 // A median user in this age group used " + column(d, c)).toString() + ' times in the past 12 months'
 // Add annotation to the chart
 // const 
+if (c == 10) {
 const makeAnnotations = d3.annotation()
   .annotations(annotations)
 d3.select("svg")
   .append("g")
   .call(makeAnnotations)
+}
           
     });
     });
