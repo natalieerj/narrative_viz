@@ -13,8 +13,8 @@
           </span>
     </div>
     <h4 id='slide'></h4>
-    <button onclick="next(data, 'previous')">Previous</button>
-    <button onclick="next(data, 'next')">Next</button>
+    <button onclick="nav(data, 'previous')">Previous</button>
+    <button onclick="nav(data, 'next')">Next</button>
     
     <svg width=300 height=300>
     </svg>
@@ -133,7 +133,7 @@ function updateChart(newdata) {
       .duration(500).delay(0).style("fill",  function(d,i) {return colors[i]})
 }
 
-function next(newdata, direction) {
+function nav(newdata, direction) {
     // vars = d3.select('select.type').property('value')
     // temp = data.filter(function(d){ return d.Variable == vars})
     if (direction == 'next' && c != 16) {
