@@ -340,15 +340,14 @@ d3.select("svg").data(freqtemp).on('mouseover', function (d, i) {
       label: "Here is the annotation label",
       title: "Annotation title"
     },
-    x: 0,
-    y: 0,
-    dy: 10,
-    dx: 10
+    color: ["red"],
+    x: 250,
+    y: 250,
+    dy: 30,
+    dx: 30
   }
 ]
-
-console.log(annotations)
-
+// A median user in this age group used " + column(d, c)).toString() + ' times in the past 12 months'
 // Add annotation to the chart
 // const 
 const makeAnnotations = d3.annotation()
