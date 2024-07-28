@@ -31,7 +31,7 @@
  
        // read current selections
         let vars = d3.select('select.type').property('value')
-        data = await d3.csv('/drug-age-usage.csv');
+        data = d3.csv('drug-age-usage.csv');
         labels = ['alcohol', 'marijuana', 'cocaine', 'crack', 'heroin', 'hallucinogen', 'inhalant', 'painreleiver', 'oxycontin', 'tranquilizer', 'stimulant', 'meth', 'sedative']
         d3.select('select.type')
               .on('change', () => updateChart(data))
