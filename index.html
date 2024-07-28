@@ -15,7 +15,8 @@
           </span>
     </div>
     <h4 id='slide'></h4>
-    <p>Each dot represents one person in a 100 person group. Use the controls to explore the number of people in each age group that would experiment with drugs and alcohol throughout their lives.</p>
+    <p>Each dot represents one person in a 100 person group.</p>
+    <p>Use the controls to explore the number of people in each age group that would experiment with drugs and alcohol throughout their lives.</p>
     <button id='previous'>Previous</button>
     <button id='next'>Next</button>
 
@@ -244,7 +245,7 @@ function nav(newdata, direction) {
         .transition()
         .duration('50')
         .attr('opacity', '1');
-    } else if {
+    } else if (c==0) {
       d3.select("svg")
         .select("#anno")
         .call(makeAnnotations12)
