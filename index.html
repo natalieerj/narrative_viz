@@ -32,7 +32,8 @@
        // read current selections
         let vars = d3.select('select.type').property('value')
         d3.csv("drug-age-usage.csv", function(data) {
-          console.log(data);
+          console.log(data[0]);
+        });
      //   data = d3.csv('drug-age-usage.csv')
         labels = ['alcohol', 'marijuana', 'cocaine', 'crack', 'heroin', 'hallucinogen', 'inhalant', 'painreleiver', 'oxycontin', 'tranquilizer', 'stimulant', 'meth', 'sedative']
         d3.select('select.type')
@@ -101,7 +102,6 @@
       //   .attr("r", 5)
       //   .style("fill", function(d,i) {return colors[i]})
       // }
-        });
     </script>
   </body>
 </html>
