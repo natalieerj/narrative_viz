@@ -75,12 +75,12 @@ for (let i = 0; i < x; i++) {
 
 d3.select("svg").append("g").attr("transform", "translate(10,10)").selectAll("circle").data(circ).enter().append("circle")
 .attr("cx", function(d,i) {
-    x = (15 * Math.floor(i/10));      
+    x = (25 * Math.floor(i/10));      
     return x})
 .attr("cy", function(d,i) {
-    y = 15 * (i%10)
+    y = 25 * (i%10)
     return y})
-.attr("r", 5)
+.attr("r", 10)
 .style("fill", function(d,i) {return colors[i]})
 
 
@@ -251,6 +251,7 @@ d3.select("svg").data(freqtemp).on('mouseover', function (d, i) {
                .duration(50)
                .style("opacity", 1);
           let num = ("A median user in this age group used " + column(d, c)).toString() + ' times in the past 12 months';
+  console.log(num)
           div.html(num)
                .style("left", (d3.event.pageX + 10) + "px")
                .style("top", (d3.event.pageY - 15) + "px");
